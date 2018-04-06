@@ -1,4 +1,4 @@
-package my.bit.sem;
+package my.bit.sem.rsa;
 
 import java.math.BigInteger;
 

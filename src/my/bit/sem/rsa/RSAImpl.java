@@ -1,4 +1,4 @@
-package my.bit.sem;
+package my.bit.sem.rsa;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
@@ -16,10 +16,13 @@ public class RSAImpl implements RSA {
     private Key publicKey;
     private Key privateKey;
 
+    private static final int BITLENGHT = 512;
+    private static SecureRandom rnd = new SecureRandom();
 
-    public RSAImpl(BigInteger p, BigInteger q) {
-        this.p = p;
-        this.q = q;
+
+    public RSAImpl() {
+        this.p = BigInteger.probablePrime(BITLENGHT, rnd);
+        this.q = BigInteger.probablePrime(BITLENGHT, rnd);
         prepare();
         publicKey = createKey(n, e);
         privateKey = createKey(n, euklid);
@@ -42,7 +45,6 @@ public class RSAImpl implements RSA {
         if (e == null) {
             e = createE();
         }
-        System.out.println(e.toString(10));
         euklid = e.modInverse(euler);
     }
 
@@ -55,8 +57,8 @@ public class RSAImpl implements RSA {
     private BigInteger createE() {
         BigInteger e;
         do {
-            e = BigInteger.probablePrime(256, new SecureRandom());
-        } while (e.gcd(euler).intValue() > 1 && (e.compareTo(euler) == -1));
+            e = BigInteger.probablePrime(BITLENGHT / 2, new SecureRandom());
+        } while (e.gcd(euler).intValue() > 1);
         return e;
     }
 
@@ -86,7 +88,6 @@ public class RSAImpl implements RSA {
         }
         BigInteger temp = value;
         temp = temp.modPow(privateKey.getRight(), privateKey.getLeft());
-        System.out.println(temp.toString(10));
         return temp;
     }
 
