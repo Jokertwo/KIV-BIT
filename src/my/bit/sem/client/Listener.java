@@ -28,7 +28,7 @@ public class Listener implements Runnable {
         while (run) {
             try {
                 Message msg = (Message) sInput.readObject();
-                logger.trace(arg0);
+                logger.trace("Recieve message");
                 buffer.add(msg);
             } catch (IOException e) {
                 logger.info("Socket was close.");

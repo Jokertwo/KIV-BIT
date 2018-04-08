@@ -9,7 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import my.bit.sem.ctrl.SendControler;
-import my.bit.sem.enums.KindOfM;
+import my.bit.sem.message.KindOfM;
 import net.miginfocom.swing.MigLayout;
 
 

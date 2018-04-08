@@ -6,7 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import my.bit.sem.enums.KindOfM;
+import my.bit.sem.message.KindOfM;
 import my.bit.sem.message.Message;
 
 
