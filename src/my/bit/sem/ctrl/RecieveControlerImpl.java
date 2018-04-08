@@ -1,6 +1,6 @@
-package my.bit.sem.gui;
+package my.bit.sem.ctrl;
 
-import my.bit.sem.ctrl.RecieveControler;
+import my.bit.sem.gui.MainWindow;
 
 public class RecieveControlerImpl implements RecieveControler{
 

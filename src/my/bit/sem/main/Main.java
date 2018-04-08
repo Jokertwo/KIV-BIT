@@ -1,4 +1,4 @@
-package my.bit.sem.gui;
+package my.bit.sem.main;
 
 import java.lang.reflect.InvocationTargetException;
 import javax.swing.SwingUtilities;
@@ -10,8 +10,11 @@ import my.bit.sem.client.HandleRecieve;
 import my.bit.sem.ctrl.ConnectControler;
 import my.bit.sem.ctrl.ConnectControlerImpl;
 import my.bit.sem.ctrl.RecieveControler;
+import my.bit.sem.ctrl.RecieveControlerImpl;
 import my.bit.sem.ctrl.SendControler;
 import my.bit.sem.ctrl.SendControlerImpl;
+import my.bit.sem.gui.MainWindow;
+import my.bit.sem.gui.Window;
 import my.bit.sem.pm.PrimeNumbersE;
 import my.bit.sem.rsa.RSA;
 import my.bit.sem.rsa.RSAImpl;
