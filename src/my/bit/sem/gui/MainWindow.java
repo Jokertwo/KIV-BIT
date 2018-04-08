@@ -9,7 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import my.bit.sem.ctrl.SendControler;
-import my.bit.sem.message.KindOfM;
+import my.bit.sem.message.Message;
 import net.miginfocom.swing.MigLayout;
 
 
@@ -64,20 +64,19 @@ public class MainWindow extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!forWriting.getText().trim().isEmpty()) {
-                    ctrl.send(KindOfM.MESSAGE.getKind(),forWriting.getText());
+                    ctrl.send(Message.MESSAGE, forWriting.getText(), null);
                     forWriting.setText("");
                 }
 
             }
         });
         disco.addActionListener(new ActionListener() {
-            
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 ctrl.disconnect();
             }
         });
     }
-    
-    
+
 }

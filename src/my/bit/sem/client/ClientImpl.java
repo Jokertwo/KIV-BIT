@@ -6,7 +6,6 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import my.bit.sem.message.KindOfM;
 import my.bit.sem.message.Message;
 
 
@@ -67,7 +66,7 @@ public class ClientImpl implements Client {
      */
     @Override
     public void disconect() {
-        sendMessage(new Message(KindOfM.LOGOUT.getKind(), ""));
+        sendMessage(new Message(Message.LOGOUT, "",null));
         close();
     }
 
