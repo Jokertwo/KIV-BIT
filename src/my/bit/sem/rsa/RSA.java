@@ -2,6 +2,7 @@ package my.bit.sem.rsa;
 
 import java.math.BigInteger;
 
+
 public interface RSA {
 
     /**
@@ -21,7 +22,7 @@ public interface RSA {
      *            receivers public key
      * @return return encrypted value
      */
-    BigInteger encryption(BigInteger value, Key publicKey) throws NullPointerException;
+    BigInteger encryption(String value, Key publicKey) throws NullPointerException;
 
 
     /**
@@ -30,5 +31,6 @@ public interface RSA {
      * @param value
      * @return
      */
-    BigInteger decription(BigInteger value) throws NullPointerException;
+    BigInteger decription(String value) throws NullPointerException;
+
 }

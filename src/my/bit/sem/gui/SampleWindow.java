@@ -1,12 +1,10 @@
 package my.bit.sem.gui;
 
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.math.BigInteger;
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
@@ -76,7 +74,7 @@ public class SampleWindow extends JFrame{
         @Override
         public void actionPerformed(ActionEvent e) {
             if(insert.getText().trim().length() > 0){
-                coded.setText(rsa.encryption(new BigInteger(insert.getText().getBytes()), rsa.getPublicKey()).toString());
+                coded.setText(rsa.encryption(insert.getText(), rsa.getPublicKey()).toString());
             }
             
         }
@@ -94,7 +92,7 @@ public class SampleWindow extends JFrame{
         @Override
         public void actionPerformed(ActionEvent e) {
             if(coded.getText().trim().length() > 0){
-                encoded.setText(new String(rsa.decription(new BigInteger(coded.getText())).toByteArray()));
+                encoded.setText(new String(rsa.decription(coded.getText()).toByteArray()));
             }
             
         }

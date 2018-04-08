@@ -16,7 +16,7 @@ public class RSAImpl implements RSA {
     private Key publicKey;
     private Key privateKey;
 
-    private static final int BITLENGHT = 512;
+    private static final int BITLENGHT = 2048;
     private static SecureRandom rnd = new SecureRandom();
 
 
@@ -29,6 +29,22 @@ public class RSAImpl implements RSA {
     }
 
 
+    public RSAImpl(BigInteger p, BigInteger q) {
+        this.p = p;
+        this.q = q;
+        prepare();
+        publicKey = createKey(n, e);
+        privateKey = createKey(n, euklid);
+    }
+
+
+    /**
+     * Just for test
+     * 
+     * @param p
+     * @param q
+     * @param e
+     */
     public RSAImpl(BigInteger p, BigInteger q, BigInteger e) {
         this.p = p;
         this.q = q;
@@ -71,25 +87,27 @@ public class RSAImpl implements RSA {
 
 
     @Override
-    public BigInteger encryption(BigInteger value, Key publicKey) throws NullPointerException {
+    public BigInteger encryption(String value, Key publicKey) throws NullPointerException {
         if (value == null || publicKey == null) {
             throw new NullPointerException("Arguments can not be null.");
         }
-        BigInteger temp = value;
+        BigInteger temp = new BigInteger(value.getBytes());
         temp = temp.modPow(publicKey.getRight(), publicKey.getLeft());
         return temp;
     }
 
 
     @Override
-    public BigInteger decription(BigInteger value) throws NullPointerException {
+    public BigInteger decription(String value) throws NullPointerException {
         if (value == null) {
             throw new NullPointerException("Argument can not be null.");
         }
-        BigInteger temp = value;
+        BigInteger temp = new BigInteger(value);
         temp = temp.modPow(privateKey.getRight(), privateKey.getLeft());
         return temp;
     }
+
+
 
 
     //////////////////////////////////////// methods just for test////////////////////////////////////
