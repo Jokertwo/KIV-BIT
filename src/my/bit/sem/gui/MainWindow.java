@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
-import my.bit.sem.ctrl.SendControler;
-import my.bit.sem.message.Message;
+import my.bit.sem.ctrl.ISendCtrl;
+import my.bit.sem.message.MessageType;
 import net.miginfocom.swing.MigLayout;
 
 
@@ -24,10 +24,10 @@ public class MainWindow extends JPanel {
     private JButton send = new JButton("Send");
     private JButton disco = new JButton("Disconnect");
 
-    private SendControler ctrl;
+    private ISendCtrl ctrl;
 
 
-    public MainWindow(SendControler ctrl) {
+    public MainWindow(ISendCtrl ctrl) {
         this.ctrl = ctrl;
         addAction();
         createChatPanel();
@@ -64,7 +64,7 @@ public class MainWindow extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!forWriting.getText().trim().isEmpty()) {
-                    ctrl.send(Message.MESSAGE, forWriting.getText(), null);
+                    ctrl.send(MessageType.MESSAGE, forWriting.getText(), null);
                     forWriting.setText("");
                 }
 

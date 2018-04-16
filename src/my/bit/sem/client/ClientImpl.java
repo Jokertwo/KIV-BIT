@@ -7,6 +7,7 @@ import java.net.Socket;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import my.bit.sem.message.Message;
+import my.bit.sem.message.MessageType;
 
 
 public class ClientImpl implements Client {
@@ -28,15 +29,15 @@ public class ClientImpl implements Client {
 
 
     @Override
-    public void start(int port) {
-
+    public boolean start(int port) {
+        logger.info("Try connect to server with port: " + port);
         try {
             socket = new Socket(address, port);
         } catch (IOException e) {
-            e.printStackTrace();
-            return;
+            logger.error("Unable connect to server!!!", e);
+            return false;
         }
-        logger.info("Connection accepted " + socket.getInetAddress() + ":" + socket.getPort());
+        logger.info("Connection accepted " + socket.toString());
         try {
             sInput = new ObjectInputStream(socket.getInputStream());
             sOutput = new ObjectOutputStream(socket.getOutputStream());
@@ -45,6 +46,7 @@ public class ClientImpl implements Client {
         }
         listener = new Listener(sInput, buffer);
         new Thread(listener).start();
+        return true;
     }
 
 
@@ -53,6 +55,7 @@ public class ClientImpl implements Client {
      */
     @Override
     public void sendMessage(Message msg) {
+        logger.trace("Send message to server.Kind '" + msg.getType() + "'");
         try {
             sOutput.writeObject(msg);
         } catch (IOException e) {
@@ -66,7 +69,8 @@ public class ClientImpl implements Client {
      */
     @Override
     public void disconect() {
-        sendMessage(new Message(Message.LOGOUT, "",null));
+        logger.info("Clint disconect from server");
+        sendMessage(new Message("", null, MessageType.LOGOUT));
         close();
     }
 
@@ -87,4 +91,8 @@ public class ClientImpl implements Client {
             e.printStackTrace();
         }
     }
+
+
+    
+   
 }

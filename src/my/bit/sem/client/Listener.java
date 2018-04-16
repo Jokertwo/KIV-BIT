@@ -12,7 +12,7 @@ public class Listener implements Runnable {
     private ObjectInputStream sInput;
     private Buffer buffer;
     private boolean run = true;
-    
+
     public static final Logger logger = LogManager.getLogger();
 
 
@@ -24,21 +24,23 @@ public class Listener implements Runnable {
 
     @Override
     public void run() {
-        // TODO Auto-generated method stub
+        logger.info("Started listen server");
+        Thread.currentThread().setName("listener-of-server");
         while (run) {
             try {
                 Message msg = (Message) sInput.readObject();
-                logger.trace("Recieve message");
+                logger.trace("Recieve message '" + msg.getType() + "' from server");
                 buffer.add(msg);
             } catch (IOException e) {
-                logger.info("Socket was close.");
-            }catch (ClassNotFoundException e) {
-                logger.error("Cant find class " + Message.class.getName(),e);
+                logger.info("Socket was close.",e);
+            } catch (ClassNotFoundException e) {
+                logger.error("Cant find class " + Message.class.getName(), e);
             }
         }
     }
-    
-    public void stop(){
+
+
+    public void stop() {
         run = false;
     }
 

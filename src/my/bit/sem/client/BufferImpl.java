@@ -19,7 +19,7 @@ public class BufferImpl implements Buffer {
 
     @Override
     public synchronized void add(Message message) {
-        logger.trace(Thread.currentThread().getName() + "store value to buffer.");
+        logger.trace(Thread.currentThread().getName() + " store value to buffer.");
         buffer.addElement(message);
         notify();
     }
@@ -37,7 +37,7 @@ public class BufferImpl implements Buffer {
         }
         Message msg = buffer.firstElement();
         buffer.remove(msg);
-        logger.trace(Thread.currentThread().getName() + "pick and remove value to buffer.");
+        logger.trace(Thread.currentThread().getName() + " pick and remove value to buffer.");
         return msg;
 
     }

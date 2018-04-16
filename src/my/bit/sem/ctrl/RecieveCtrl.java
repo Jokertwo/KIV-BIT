@@ -2,12 +2,12 @@ package my.bit.sem.ctrl;
 
 import my.bit.sem.gui.MainWindow;
 
-public class RecieveControlerImpl implements RecieveControler{
+public class RecieveCtrl implements IRecieveCtrl{
 
     
     private MainWindow mw;
     
-    public RecieveControlerImpl(MainWindow mw) {
+    public RecieveCtrl(MainWindow mw) {
         this.mw = mw;
     }
 

@@ -8,9 +8,9 @@ public interface Client {
     public void sendMessage(Message msg);
 
 
-    void start(int port);
+    boolean start(int port);
 
 
     public void disconect();
-
+       
 }

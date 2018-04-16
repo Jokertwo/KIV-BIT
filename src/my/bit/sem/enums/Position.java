@@ -1,8 +1,8 @@
 package my.bit.sem.enums;
 
 public enum Position {
-    FIRST("first"),
-    SECOND("second");
+    CONNECT("connect"),
+    COMUNICATE("communicate");
     
     private String name;
     

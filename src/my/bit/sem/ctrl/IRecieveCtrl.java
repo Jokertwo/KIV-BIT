@@ -1,6 +1,6 @@
 package my.bit.sem.ctrl;
 
-public interface RecieveControler {
+public interface IRecieveCtrl {
 
     
     void recieve(String message);
