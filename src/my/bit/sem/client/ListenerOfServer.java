@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 import my.bit.sem.message.Message;
 
 
-public class Listener implements Runnable {
+public class ListenerOfServer implements Runnable {
 
     private ObjectInputStream sInput;
     private Buffer buffer;
@@ -16,7 +16,7 @@ public class Listener implements Runnable {
     public static final Logger logger = LogManager.getLogger();
 
 
-    public Listener(ObjectInputStream sInput, Buffer buffer) {
+    public ListenerOfServer(ObjectInputStream sInput, Buffer buffer) {
         this.sInput = sInput;
         this.buffer = buffer;
     }
@@ -32,7 +32,7 @@ public class Listener implements Runnable {
                 logger.trace("Recieve message '" + msg.getType() + "' from server");
                 buffer.add(msg);
             } catch (IOException e) {
-                logger.info("Socket was close.",e);
+                logger.info("Socket was close.");
             } catch (ClassNotFoundException e) {
                 logger.error("Cant find class " + Message.class.getName(), e);
             }

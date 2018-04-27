@@ -1,6 +1,7 @@
-package my.bit.sem.ctrl;
+package my.bit.sem.ctrl.impl;
 
 import my.bit.sem.client.Client;
+import my.bit.sem.ctrl.IConnectCtrl;
 
 public class ConnectCtrl implements IConnectCtrl {
 

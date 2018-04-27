@@ -5,20 +5,20 @@ import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import my.bit.sem.ctrl.ISendCtrl;
-import my.bit.sem.ctrl.ISwitchCardCtrl;
+import my.bit.sem.ctrl.SendCtrl;
+import my.bit.sem.ctrl.SwitchCardCtrl;
 import net.miginfocom.swing.MigLayout;
 
 
 @SuppressWarnings("serial")
 public class ConnectWindow extends JPanel {
 
-    private ISendCtrl cCtrl;
+    private SendCtrl cCtrl;
     private JTextField tf;
-    private ISwitchCardCtrl sCtrl;
+    private SwitchCardCtrl sCtrl;
 
 
-    public ConnectWindow(ISendCtrl cCtrl, ISwitchCardCtrl sCtrl) {
+    public ConnectWindow(SendCtrl cCtrl, SwitchCardCtrl sCtrl) {
         this.cCtrl = cCtrl;
         this.sCtrl = sCtrl;
         tf = new JTextField();

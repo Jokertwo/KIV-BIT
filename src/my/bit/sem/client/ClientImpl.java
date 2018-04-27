@@ -18,7 +18,7 @@ public class ClientImpl implements Client {
     private Socket socket;
     private ObjectOutputStream sOutput;
     private ObjectInputStream sInput;
-    private Listener listener;
+    private ListenerOfServer listener;
     private Buffer buffer;
 
 
@@ -30,21 +30,18 @@ public class ClientImpl implements Client {
 
     @Override
     public boolean start(int port) {
-        logger.info("Try connect to server with port: " + port);
+        logger.debug("Try connect to server with port: " + port);
         try {
             socket = new Socket(address, port);
+            logger.info("Connection accepted " + socket.toString());
+            
+            sInput = new ObjectInputStream(socket.getInputStream());
+            sOutput = new ObjectOutputStream(socket.getOutputStream());
         } catch (IOException e) {
             logger.error("Unable connect to server!!!", e);
             return false;
         }
-        logger.info("Connection accepted " + socket.toString());
-        try {
-            sInput = new ObjectInputStream(socket.getInputStream());
-            sOutput = new ObjectOutputStream(socket.getOutputStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        listener = new Listener(sInput, buffer);
+        listener = new ListenerOfServer(sInput, buffer);
         new Thread(listener).start();
         return true;
     }
@@ -88,11 +85,8 @@ public class ClientImpl implements Client {
                 socket.close();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Error during close socket!", e);
         }
     }
 
-
-    
-   
 }

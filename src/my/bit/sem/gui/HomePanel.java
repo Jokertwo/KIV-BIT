@@ -15,14 +15,12 @@ public class HomePanel extends JPanel {
 
     public HomePanel(CardLayout cl) {
         setLayout(cl);
-
     }
 
 
-    public void addPanels(JPanel... panels) {
-        for (int i = 0; i < panels.length; i++) {
-            add(panels[i], Position.values()[i].getName());
-        }
+    public void addPanels(JPanel connct,JPanel mainWidow) {
+        add(connct,Position.CONNECT.getName());
+        add(mainWidow, Position.COMUNICATE.getName());
     }
 
 }
