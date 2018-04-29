@@ -20,7 +20,6 @@ import my.bit.sem.gui.HomePanel;
 import my.bit.sem.gui.MainWindow;
 import my.bit.sem.gui.MainWindowImpl;
 import my.bit.sem.gui.Window;
-import my.bit.sem.pm.PrimeNumbersE;
 import my.bit.sem.rsa.RSA;
 import my.bit.sem.rsa.RSAImpl;
 
@@ -46,7 +45,7 @@ public class Main {
         logger.info("Start client app");
         
         //implementation of RSA
-        rsa = new RSAImpl(PrimeNumbersE.pN1.getPn(), PrimeNumbersE.pN2.getPn());
+        rsa = new RSAImpl();
         buffer = new BufferImpl();
         
         //connection to server

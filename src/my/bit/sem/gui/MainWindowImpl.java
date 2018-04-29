@@ -3,7 +3,6 @@ package my.bit.sem.gui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.InvocationTargetException;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -12,6 +11,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import my.bit.sem.ctrl.SendCtrl;
 import my.bit.sem.message.MessageType;
 import my.bit.sem.message.Operation;
@@ -20,7 +21,7 @@ import net.miginfocom.swing.MigLayout;
 
 @SuppressWarnings("serial")
 public class MainWindowImpl extends JPanel implements MainWindow {
-
+    public static final Logger logger = LogManager.getLogger();
     private JTextArea forReading;
     private JTextArea forWriting = new JTextArea();
     private JScrollPane forRsp;
@@ -81,15 +82,11 @@ public class MainWindowImpl extends JPanel implements MainWindow {
 
     @Override
     public void recieve(String message) {
-        try {
-            SwingUtilities.invokeAndWait(() -> {
-                forReading.append(String.format("Server respose: %s\n", message));
-                forRsp.getVerticalScrollBar().setValue(forRsp.getVerticalScrollBar().getMaximum());
-            });
-        } catch (InvocationTargetException | InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        logger.debug("Append new text: " + message);
+        SwingUtilities.invokeLater(() -> {
+            forReading.append(String.format("Server respose: %s\n", message));
+            forRsp.getVerticalScrollBar().setValue(forRsp.getVerticalScrollBar().getMaximum());
+        });        
     }
 
 

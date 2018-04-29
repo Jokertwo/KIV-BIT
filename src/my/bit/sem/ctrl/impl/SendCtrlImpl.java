@@ -32,7 +32,7 @@ public class SendCtrlImpl implements SendCtrl {
 
     @Override
     public void send(MessageType type, String message, Key key) {
-        String msg = rsa.encryption(message, rsa.getPublicKey()).toString();
+        String msg = rsa.encryption(message).toString();
         client.sendMessage(new Message(msg, key, type));
 
     }
@@ -46,7 +46,7 @@ public class SendCtrlImpl implements SendCtrl {
 
     @Override
     public void login() {
-        send(MessageType.LOGIN, "Petr", rsa.getPublicKey());
+        client.sendMessage(new Message("", rsa.getPublicKey(), MessageType.LOGIN));
     }
 
 }

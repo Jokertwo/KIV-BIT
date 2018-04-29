@@ -35,16 +35,23 @@ public class Reciever implements Runnable {
             Message message = buffer.process();
             switch (message.getType()) {
                 case MESSAGE:
-                    String msg = new String(rsa.decription(buffer.process().getMessage()).toByteArray());
+//                    logger.entry();
+                    String msg = new String(rsa.decription(message.getMessage()).toByteArray());
+//                    String msg = message.getMessage();
+//                    logger.exit();
+                    logger.trace("Case message");
                     mw.recieve(msg);
                     break;
                 case PUBLIC_KEY:
+                    logger.trace("Case publicKey");
                     rsa.setServerKey(message.getKey());
                     break;
                 case LOGOUT:
+                    logger.trace("Case logout");
                     stop();
                     break;
                 default:
+                    logger.error("Unknow type of message");
                     break;
             }
 
