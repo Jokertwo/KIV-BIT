@@ -30,7 +30,7 @@ public class Main {
     //inicialization of logger
     static {
         System.setProperty("log4j.configurationFile",
-            "./log/log_config.xml");
+            "log_config.xml");
     }
     public static final Logger logger = LogManager.getLogger();
 
