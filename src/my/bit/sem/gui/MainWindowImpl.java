@@ -86,7 +86,7 @@ public class MainWindowImpl extends JPanel implements MainWindow {
         SwingUtilities.invokeLater(() -> {
             forReading.append(String.format("Server respose: %s\n", message));
             forRsp.getVerticalScrollBar().setValue(forRsp.getVerticalScrollBar().getMaximum());
-        });        
+        });
     }
 
 
@@ -98,9 +98,10 @@ public class MainWindowImpl extends JPanel implements MainWindow {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (!number1.getText().trim().isEmpty()) {
-                    ctrl.send(MessageType.MESSAGE, number1.getText(), null);
+                if (!number1.getText().trim().isEmpty() && !number2.getText().trim().isEmpty()) {
+                    ctrl.send(MessageType.MESSAGE, number1.getText()+ ";" + number2.getText(), null, (Operation)operation.getSelectedItem());
                     number1.setText("");
+                    number2.setText("");
                 }
 
             }

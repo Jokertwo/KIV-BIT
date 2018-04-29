@@ -7,6 +7,7 @@ import my.bit.sem.ctrl.SendCtrl;
 import my.bit.sem.key.Key;
 import my.bit.sem.message.Message;
 import my.bit.sem.message.MessageType;
+import my.bit.sem.message.Operation;
 import my.bit.sem.rsa.RSA;
 
 
@@ -31,9 +32,9 @@ public class SendCtrlImpl implements SendCtrl {
 
 
     @Override
-    public void send(MessageType type, String message, Key key) {
+    public void send(MessageType type, String message, Key key, Operation operation) {
         String msg = rsa.encryption(message).toString();
-        client.sendMessage(new Message(msg, key, type));
+        client.sendMessage(new Message(msg, key, type, operation));
 
     }
 
@@ -46,7 +47,7 @@ public class SendCtrlImpl implements SendCtrl {
 
     @Override
     public void login() {
-        client.sendMessage(new Message("", rsa.getPublicKey(), MessageType.LOGIN));
+        client.sendMessage(new Message(null, rsa.getPublicKey(), MessageType.LOGIN, null));
     }
 
 }

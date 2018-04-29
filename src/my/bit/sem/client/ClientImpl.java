@@ -38,7 +38,7 @@ public class ClientImpl implements Client {
             sInput = new ObjectInputStream(socket.getInputStream());
             sOutput = new ObjectOutputStream(socket.getOutputStream());
         } catch (IOException e) {
-            logger.error("Unable connect to server!!!", e);
+            logger.error("Unable connect to server!!!",e);
             return false;
         }
         listener = new ListenerOfServer(sInput, buffer);
@@ -67,7 +67,7 @@ public class ClientImpl implements Client {
     @Override
     public void disconect() {
         logger.info("Clint disconect from server");
-        sendMessage(new Message("", null, MessageType.LOGOUT));
+        sendMessage(new Message(null, null, MessageType.LOGOUT,null));
         close();
     }
 
